@@ -17,14 +17,14 @@ $LOAD_PATH << '../lib'
 
 require 'array_adds'
 
-context "Array" do
+describe "Array" do
 
-  specify "Should be generate color sequence" do
+  it "Should be generate color sequence" do
     char_colors = ['r', 'w']
     char_colors.permut(2).should == [["r", "r"], ["r", "w"], ["w", "r"], ["w", "w"]]
   end
 
-   specify "Should be generate color sequence" do
+   it "Should be generate color sequence" do
     char_colors = [['r', 'w'], ['r', 'w']]
     char_colors.sequence.should == [["r", "r"], ["r", "w"], ["w", "r"], ["w", "w"]]
   end
