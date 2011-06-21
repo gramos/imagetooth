@@ -15,7 +15,7 @@
 
 require 'image_tooth'
 
-context "Image Tooth" do
+describe "Image Tooth" do
 
   before(:each) do
     @img_tooth = ImageTooth.new
@@ -37,7 +37,7 @@ context "Image Tooth" do
     }
   end
 
-  specify "One color should be just one character" do
+  it "One color should be just one character" do
     @img_tooth.wrap_color(:r).should == 'red'
     @img_tooth.wrap_color(:g).should == 'green'
     @img_tooth.wrap_color(:w).should == 'white'
@@ -45,14 +45,14 @@ context "Image Tooth" do
     @img_tooth.wrap_color(:b).should == 'blue'
   end
 
-  specify "Should be generate base image tooth" do
+  it "Should be generate base image tooth" do
     @img_tooth.graph_base(@base_img)
     File.exists?(@img_tooth.root_path +  "/" + @base_img).should be_true
     delete_img
 
   end
 
-  specify "Should be generate image with face painted, on base image" do
+  it "Should be generate image with face painted, on base image" do
     hash_faces = { :top => 'blue', :right => 'white', :bottom => 'white',
       :left => 'white', :center => 'white' }
     @img_tooth.graph_base
@@ -68,7 +68,7 @@ context "Image Tooth" do
     File.exists?(@img_tooth.root_path +  "/" + @painted_tooth).should be_true
   end
 
-  specify "Should be generate image with face painted, on base image" do
+  it "Should be generate image with face painted, on base image" do
     file_tooth = 'wrrgw.png'
     @img_tooth.graph_base
     @img_tooth.paint_img file_tooth
@@ -76,11 +76,11 @@ context "Image Tooth" do
     delete_img
   end
 
-  specify "Should have five colors chars" do
+  it "Should have five colors chars" do
     ImageTooth.chars_colors.should ==  [:w, :n, :r, :b, :g]
   end
 
-  specify "Should be generate a hash based on file name " do
+  it "Should be generate a hash based on file name " do
     hash_faces = { :top => 'white', :right => 'white', :bottom => 'green',
       :left => 'green', :center => 'white' }
     @img_tooth.file_name2hash_faces('wwggw.png').should == hash_faces
