@@ -1,0 +1,57 @@
+#!/usr/bin/ruby
+##########################################################################
+#  Copyright (C) 2007 Ramos, Gastón - ramos.gaston@gmail.com
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#
+#########################################################################
+
+$LOAD_PATH << '../lib'
+
+require 'rubygems'
+require 'commandline/optionparser'
+include CommandLine
+require 'image_tooth'
+
+opt = OptionParser.new { |o|
+
+  o << Option.new(:flag, :names => %w[--help  -h],
+                  :opt_description => "Prints this page.")
+
+  o << Option.new(:flag, :names => %w[--all  -a],
+                  :opt_description => "Generate all images painted combinations.")
+
+  o << Option.new(:names => %w(--folder -o),
+                  :opt_description => "Folder where images are saved.",
+                  :arg_description => "folder_output",
+                  :opt_found => OptionParser::GET_ARGS)
+
+   o << Option.new(:names => %w(--image -i),
+                  :opt_description => "Generate image tooth based on file name.",
+                  :arg_description => "image_name",
+                  :opt_found => OptionParser::GET_ARGS)
+}
+
+od = opt.parse(ARGV)
+
+puts opt.to_s if ( od["--help"] || ARGV.size == 0 )
+
+if (od["--all"] and od["--folder"])
+  @img_tooth = ImageTooth.new
+  @img_tooth.root_path = od["--folder"]
+  @img_tooth.create_folders
+  @img_tooth.gen_all
+elsif (od["--image"] and od["--folder"])
+  @img_tooth = ImageTooth.new
+  @img_tooth.root_path = od["--folder"]
+  @img_tooth.paint_img od["--image"]
+end
+
