@@ -11,12 +11,13 @@ class ArgParser
         options.image = i
       end
 
-      opts.on("-f", "--folder FOLDER", "Folder where images are saved.") do |f|
+      opts.on("-f", "--folder FOLDER", "Folder where images are saved. (** Required **)") do |f|
         options.folder = f
       end
 
       opts.on_tail("-h", "--help", "Show this message") do
         puts opts
+
         exit
       end
     end

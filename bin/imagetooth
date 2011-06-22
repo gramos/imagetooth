@@ -14,7 +14,6 @@
 #
 #########################################################################
 
-
 lib_path = File.expand_path(File.dirname(__FILE__))
 lib_path = File.join lib_path, "../lib"
 
