@@ -34,20 +34,20 @@ This code generates an image where the filename's characters means:
 
 and are ordered, begining on the upper face of the the tooth and moving clockwise ending on the center face.
 [top][right][bottom][left][center].png
-![wwwww.png](https://github.com/gramos/imagetooth/blob/master/images/wwwww.png)
+![wwwww.png](https://github.com/gramos/imagetooth/blob/master/images/wwwww.png?raw=true)
 
 More examples
 -------------
 
-Generate a tooth with its top face painted with red:![wwwww.png](https://github.com/gramos/imagetooth/blob/master/images/rwwww.png)
+Generate a tooth with its top face painted with red:![wwwww.png](https://github.com/gramos/imagetooth/blob/master/images/rwwww.png?raw=true)
 
     imagetooth  --image rwwww.png --folder ./
 
-Generate a tooth with its top face painted red and center one green:![wwwww.png](https://github.com/gramos/imagetooth/blob/master/images/rwwwg.png)
+Generate a tooth with its top face painted red and center one green:![wwwww.png](https://github.com/gramos/imagetooth/blob/master/images/rwwwg.png?raw=true)
 
     imagetooth  --image rwwwg.png --folder ./
 
-Generate a tooth with top face painted red, left one black and center one green:![wwwww.png](https://github.com/gramos/imagetooth/blob/master/images/rwwng.png)
+Generate a tooth with top face painted red, left one black and center one green:![wwwww.png](https://github.com/gramos/imagetooth/blob/master/images/rwwng.png?raw=true)
 
     imagetooth  --image rwwng.png --folder ./
 
