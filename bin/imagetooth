@@ -14,44 +14,57 @@
 #
 #########################################################################
 
-$LOAD_PATH << '../lib'
 
-require 'rubygems'
-require 'commandline/optionparser'
-include CommandLine
+lib_path = File.expand_path(File.dirname(__FILE__))
+lib_path = File.join lib_path, "../lib"
+
+$LOAD_PATH << lib_path
+
+require 'optparse'
 require 'image_tooth'
+require 'ostruct'
+require 'pp'
 
-opt = OptionParser.new { |o|
+class Optparse
+  def self.parse(args)
+    options = OpenStruct.new
 
-  o << Option.new(:flag, :names => %w[--help  -h],
-                  :opt_description => "Prints this page.")
+    opts = OptionParser.new do |opts|
+      opts.on("-a", "--all", "Generate all teeth images's combinations.") do |all|
+        options.all = all
+      end
 
-  o << Option.new(:flag, :names => %w[--all  -a],
-                  :opt_description => "Generate all images painted combinations.")
+      opts.on("-i", "--image IMAGE", "Generate image tooth based on file name.") do |i|
+        options.image = i
+      end
 
-  o << Option.new(:names => %w(--folder -o),
-                  :opt_description => "Folder where images are saved.",
-                  :arg_description => "folder_output",
-                  :opt_found => OptionParser::GET_ARGS)
+      opts.on("-f", "--folder FOLDER", "Folder where images are saved.") do |f|
+        options.folder = f
+      end
 
-   o << Option.new(:names => %w(--image -i),
-                  :opt_description => "Generate image tooth based on file name.",
-                  :arg_description => "image_name",
-                  :opt_found => OptionParser::GET_ARGS)
-}
+      opts.on_tail("-h", "--help", "Show this message") do
+        puts opts
+        exit
+      end
+    end
 
-od = opt.parse(ARGV)
+    opts.parse!(args)
+    options
+  end
+end
 
-puts opt.to_s if ( od["--help"] || ARGV.size == 0 )
+opt = Optparse.parse(ARGV)
 
-if (od["--all"] and od["--folder"])
+if (opt.all and opt.folder)
   @img_tooth = ImageTooth.new
-  @img_tooth.root_path = od["--folder"]
+  @img_tooth.root_path = opt.folder
   @img_tooth.create_folders
   @img_tooth.gen_all
-elsif (od["--image"] and od["--folder"])
+elsif (opt.image and opt.folder)
   @img_tooth = ImageTooth.new
-  @img_tooth.root_path = od["--folder"]
-  @img_tooth.paint_img od["--image"]
+  @img_tooth.root_path = opt.folder
+  @img_tooth.paint_img opt.image
+else
+  Optparse.parse(["-h"])
 end
 
