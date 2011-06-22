@@ -22,38 +22,12 @@ $LOAD_PATH << lib_path
 
 require 'optparse'
 require 'image_tooth'
+require 'arg_parser'
 require 'ostruct'
 require 'pp'
 
-class Optparse
-  def self.parse(args)
-    options = OpenStruct.new
 
-    opts = OptionParser.new do |opts|
-      opts.on("-a", "--all", "Generate all teeth images's combinations.") do |all|
-        options.all = all
-      end
-
-      opts.on("-i", "--image IMAGE", "Generate image tooth based on file name.") do |i|
-        options.image = i
-      end
-
-      opts.on("-f", "--folder FOLDER", "Folder where images are saved.") do |f|
-        options.folder = f
-      end
-
-      opts.on_tail("-h", "--help", "Show this message") do
-        puts opts
-        exit
-      end
-    end
-
-    opts.parse!(args)
-    options
-  end
-end
-
-opt = Optparse.parse(ARGV)
+opt = ArgParser.parse(ARGV)
 
 if (opt.all and opt.folder)
   @img_tooth = ImageTooth.new
@@ -65,6 +39,6 @@ elsif (opt.image and opt.folder)
   @img_tooth.root_path = opt.folder
   @img_tooth.paint_img opt.image
 else
-  Optparse.parse(["-h"])
+  ArgParser.parse(["-h"])
 end
 
