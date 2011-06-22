@@ -77,7 +77,9 @@ describe "Image Tooth" do
   end
 
   it "Should have five colors chars" do
-    ImageTooth.chars_colors.should ==  [:w, :n, :r, :b, :g]
+    [:w, :n, :r, :b, :g].each do |c|
+        ImageTooth.chars_colors.should include c
+    end
   end
 
   it "Should be generate a hash based on file name " do
