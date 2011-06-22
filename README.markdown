@@ -34,7 +34,7 @@ This code generates an image where the filename's characters means:
 
 and are ordered, begining on the upper face of the the tooth and moving clockwise ending on the center face.
 [top][right][bottom][left][center].png
-![wwwww.png](images/wwwww.png)
+![wwwww.png](/images/wwwww.png)
 
 More examples
 -------------
