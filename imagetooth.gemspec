@@ -2,7 +2,7 @@ require 'date'
 
 Gem::Specification.new do |s|
   s.name              = %q{imagetooth}
-  s.version           = "2.0.0"
+  s.version           = "2.0.1"
   s.date              = Date.today.to_s
   s.summary           = %q{This library allows to generate images of teeth for odontograms with tooth faces painted in a color (red, green, blue, white or black for example). This is very usefull for dental applications..}
   s.description       =<<DESCRIPTION
