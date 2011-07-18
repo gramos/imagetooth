@@ -13,7 +13,6 @@
 #  GNU General Public License for more details.
 #
 #########################################################################
-require 'rubygems'
 require 'RMagick'
 require 'array_adds'
 
