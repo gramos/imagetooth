@@ -17,14 +17,11 @@
 lib_path = File.expand_path(File.dirname(__FILE__))
 lib_path = File.join lib_path, "../lib"
 
-$LOAD_PATH << lib_path
-
 require 'optparse'
-require 'image_tooth'
-require 'arg_parser'
+require File.join(lib_path, 'image_tooth')
+require File.join(lib_path, 'arg_parser')
 require 'ostruct'
 require 'pp'
-
 
 opt = ArgParser.parse(ARGV)
 
