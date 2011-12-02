@@ -3,9 +3,8 @@ class ArgParser
     options = OpenStruct.new
 
     gen_img_help = <<-EOS
-   ImageTooth paints the faces of the tooth image on hash colors based.
-   The tooth's filename represents the faces painted,
-   The filename's characters are:
+   ImageTooth paints the faces of the tooth. The tooth's filename
+   represents the faces painted, the filename's characters are:
 
    * w - White
    * g - Green
